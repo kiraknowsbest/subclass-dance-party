@@ -22,9 +22,9 @@ describe('blinkyDancer', function() {
     it('should call step at least once per second', function() {
       sinon.spy(blinkyDancer, 'step');
       expect(blinkyDancer.step.callCount).to.be.equal(0);
-    blinkyDancer = makeBlinkyDancer(10, 20, timeBetweenSteps);
       clock.tick(timeBetweenSteps);
-
+      // Why do we need this second clock.tick?
+      clock.tick(timeBetweenSteps);
       expect(blinkyDancer.step.callCount).to.be.equal(1);
 
       clock.tick(timeBetweenSteps);
