@@ -23,7 +23,8 @@ $(document).ready(function() {
   });
 
   $('.addWaveButton').on('click', function(event) {
-    var waves = ['images/tsunami.png'];
+
+	var waves = ['images/tsunami.png'];
     var waveNode = "<img src=\"" + waves[0] + "\" class=\"wave\">";
     $("body").append(waveNode);
 

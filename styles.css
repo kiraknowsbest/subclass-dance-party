@@ -58,3 +58,34 @@ body, a:link, a:visited, a:active{
   position: absolute;
   transition: 
 }
+
+.boat {
+  background-color: #a47d2f;
+  width: 250px;
+  height: 50px;
+  position: absolute;
+  bottom: 49%;
+  left: 40%;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.mast {
+  background-color: black;
+  width: 10px;
+  height: 125px;
+  position: absolute;
+  bottom: 54.25%;
+  left: 48%;
+}
+
+.flag {
+  width: 0;
+  height: 0;
+  border-right: 70px solid white;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  position: absolute;
+  left: 43.45%;
+  bottom: 62.6%;
+}
