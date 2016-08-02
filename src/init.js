@@ -1,7 +1,7 @@
 $(document).ready(function() {
   window.dancers = [];
 
-  $('.addDancerButton').on('click', function(event) {
+  $('.addWaveButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
      * As long as the "data-dancer-maker-function-name" attribute of a
@@ -15,18 +15,25 @@ $(document).ready(function() {
      * A new object of the given type will be created and added
      * to the stage.
      */
-    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+    var waves = [];
+    waves.length = 100;
+
+    var waterMakerFunction = $(this).data('dancer-maker-function-name');
 
     // get the maker function for the kind of dancer we're supposed to make
-    var DancerMakerFunction = window[dancerMakerFunctionName];
+    var DancerMakerFunction = window[waterMakerFunction];
 
     // make a dancer with a random position
-    var dancer = new DancerMakerFunction(
-      $('body').height() * Math.random(),
-      $('body').width() * Math.random(),
-      Math.random() * 1000
-    );
-    $('body').append(dancer.$node);
+    for ( var i = 0; i < waves.length; i++ ) {
+      var dancer = new DancerMakerFunction(
+        $('body').height() * .5,
+        $('body').width() * i / 100,
+        Math.random() * 100000000
+      );
+      $('body').append(dancer.$node);
+    }
+
+
   });
 });
 
