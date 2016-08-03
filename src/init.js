@@ -97,7 +97,7 @@ $(document).ready(function() {
   $('.cloudsButton').on('click', function(event) {
     var height = 20;
     var width = 20;
-    var speed = 8000;
+    var speed = 4000;
     yPos = Math.floor(Math.random() * 11) + 70;
     xPos = Math.floor(Math.random() * 31);
     var cloudOrStorm = Math.round(Math.random());
@@ -123,11 +123,10 @@ $(document).ready(function() {
 
   $('.lineupButton').on('click', function(event) {
     event.preventDefault();
-    var allClouds = document.getElementsByClassName("cloud");
-    console.log(allClouds);
+    var allClouds = document.getElementsByClassName('cloud');
     var spread = 100 / allClouds.length;
     for ( var i = 0; i < allClouds.length; i++ ) {
-      allClouds[i].style.left = i * spread + "%";
+      allClouds[i].style.left = i * spread + '%';
       allClouds[i].style.bottom = 75 + '%';
     }
 
