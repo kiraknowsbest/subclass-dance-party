@@ -1,33 +1,25 @@
-var Cloud = function(width, height, speed, yPos) {
+var Cloud = function(width, speed, yPos, xPos) {
   this.width = width;
-  this.height = height;
   this.speed = speed;
   this.yPos = yPos;
-  this.xPos = 105;
+  this.xPos = 105 + xPos;
 };
+
 //appends cloud to page
 Cloud.prototype.add = function() {
   //width, height yPos
-  var cloud = '<img class="cloud" src="Images/cloud.png">';
-
-  var cloudsArr = document.getElementsByClassName('cloud');
-  console.log(cloudsArr);
-  //$('body').remove($('cloudsArr[4]''));
-
-  // if ( number of clouds is > 4) {
-  //   clouds.delete node from the tree
-  // }
-
+  var cloud = '<img ';
+  cloud += 'style="bottom:' + this.yPos + '%;left:' + this.xPos + '%;" '; 
+  cloud += 'class="cloud" src="Images/cloud.png">';
 
   $('body').append( cloud );
-  $('.cloud').css({
-    width: this.width + '%',
-    height: this.height + '%',
-    left: this.xPos + '%'
-  });
-  $('.cloud').animate({
-    bottom: this.yPos + '%'
-  }, 2000);
+  // $('.cloud').css({
+  //   width: this.width + '%',
+  //   left: this.xPos + '%'
+  // });
+  // $('.cloud').animate({
+  //   bottom: this.yPos + '%'
+  // }, 2000);
 };
 // makes the cloud move
 Cloud.prototype.fly = function () {
@@ -35,4 +27,8 @@ Cloud.prototype.fly = function () {
   $('.cloud').animate({
     left: '-40%'
   }, this.speed);
+  //var $this = $('this');
+  //$this.remove();
 };
+
+

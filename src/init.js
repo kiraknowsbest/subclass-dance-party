@@ -3,138 +3,143 @@ $(document).ready(function() {
 
   var sharkAttack = window['sharkBait'];
 
+  var allClouds = [];
+
   $('.sharkBait').on('click', function(event) {
     $('.shark').animate({
-      bottom: "17.5%",
-      left: "50%"
+      bottom: "-4.5%",
+      left: "75%"
       
     }, 500);
     $('.shark').animate({
       left: "5%",
     }, 400);
     $('.shark').animate({
-      bottom: "1%",
+      bottom: "-34%",
       
     }, 2000);
     $('.shark').animate({
-      left: "60%",
+      left: "90%",
       
-    }, 500);
+    }, 10);
+  });
+
+  $('.addWater').on('click', function(event) {
+
+    var waves = [];
+    var numWaves = 100;
+
+    //make a dancer with a random position
+    for ( var i = 0; i < numWaves; i++ ) {
+      var dancer = new MakeBlinkyDancer(
+        $('body').height() * .5,
+        $('body').width() * i / numWaves
+      );
+      waves.push(dancer);
+      $('body').append(dancer.$node);
+    }
+
+    var makeWave = function() {
+      for (var i = 0; i < waves.length; i++) {
+        
+        setTimeout(function() {
+          var top = parseInt(waves[i].$node[0].style.top);
+          top -= 20;
+          waves[i].$node[0].style.top = top + 'px';
+        }, 1000);
+
+      }
+    };
+
   });
 
   $('.addWaveButton').on('click', function(event) {
-
-	var waves = ['images/tsunami.png'];
+    var waves = ['images/tsunami.png'];
     var waveNode = "<img src=\"" + waves[0] + "\" class=\"wave\">";
     $("body").append(waveNode);
 
     $(".wave").animate({
       left: "105%"
     }, 3000);
-    /* This function sets up the click handlers for the create-dancer
-     * buttons on dancefloor.html. You should only need to make one small change to it.
-     * As long as the "data-dancer-maker-function-name" attribute of a
-     * class="addDancerButton" DOM node matches one of the names of the
-     * maker functions available in the global scope, clicking that node
-     * will call the function to make the dancer.
-     */
+    $('.canvas').animate({
 
-    /* dancerMakerFunctionName is a string which must match
-     * one of the dancer maker functions available in global scope.
-     * A new object of the given type will be created and added
-     * to the stage.
-     */
-    //console.log(waves[0]);
+    }, 500);
   });
 
-  setInterval(function() {
+  // var addInitialClouds = function() {
 
-    // random num between 70, 80 - yPos
+  //   var width = 20;
+  //   var speed = 16000;
+  //   var yPos, xPos;
 
+  //   for (var i = 0; i < 5; i++) {
+  //     yPos = Math.floor(Math.random() * 11) + 70;
+  //     xPos = Math.floor(Math.random() * 100);
+      
+  //     var cloud = new Cloud(width, speed, yPos, xPos);
+  //     cloud.add();
+  //     cloud.fly();
+  //     console.log(cloud);
+  //   } 
 
+  // };
+  // addInitialClouds();
+  
+  // var interval = setInterval(function() {
+  //   $('.cloud').css('left', '105%');
 
-    var height = 20; //20
-    var width = 20; //20
-    var speed = 8000;
-    var yPos = Math.floor(Math.random() * 11) + 70;
+  //   $('.cloud').animate({
+  //     left: '-40%'
+  //   }, 8000);
 
-    var cloud = new Cloud(width, height, speed, yPos);
-    cloud.add();
-    cloud.fly();
-
-
-  }, 3500);
+  // }, 9000);
 
   $('.cloudsButton').on('click', function(event) {
-
-    var height = 20; //20
-    var width = 20; //20
+    var height = 20;
+    var width = 20;
     var speed = 8000;
-    var yPos = 74;
-
-    var cloud = new Cloud(width, height, speed, yPos);
-    console.log(cloud);
-    cloud.add();
-    cloud.fly();
+    yPos = Math.floor(Math.random() * 11) + 70;
+    xPos = Math.floor(Math.random() * 31);
+    var cloudOrStorm = Math.round(Math.random());
+    if ( cloudOrStorm > 0 ) {
+      yPos -= 10; 
+      var storm = new Storm( width, speed, yPos, xPos );
+      allClouds.push(storm);
+      storm.add();
+      storm.fly();
+    } else {
+      var cloud = new Cloud(width, speed, yPos, xPos);
+      allClouds.push(cloud);
+      cloud.add();
+      cloud.fly();
+    }
   });
 
+  $('.boatsButton').on('click', function(event) {
+    $('.pirate').toggle();
+    $('.sail').toggle();
+    $('body').css('background-image', '');
+  });
 
+  $('.lineupButton').on('click', function(event) {
+    event.preventDefault();
+    var allClouds = document.getElementsByClassName("cloud");
+    console.log(allClouds);
+    var spread = 100 / allClouds.length;
+    for ( var i = 0; i < allClouds.length; i++ ) {
+      allClouds[i].style.left = i * spread + "%";
+      allClouds[i].style.bottom = 75 + '%';
+    }
 
-  // var waves = [];
-  // var numWaves = 100;
-  //var waterMakerFunction = $(this).data('dancer-maker-function-name');
+  });
 
-  // get the maker function for the kind of dancer we're supposed to make
-  
-
-  // make a dancer with a random position
-  // for ( var i = 0; i < numWaves; i++ ) {
-  //   var dancer = new DancerMakerFunction(
-  //     $('body').height() * .5,
-  //     $('body').width() * i / numWaves
-  //   );
-  //   waves.push(dancer);
-  //   $('body').append(dancer.$node);
-  // }
-  //console.log(waves[0]);
-
-
-  // var makeWave = function() {
-  //   // for (var i = 0; i < waves.length; i++) {
-  //   //   //console.log('test', waves[i].$node[0]);
-      
-  //   //   setTimeout(function() {
-  //   //     console.log(i)
-  //   //     var top = parseInt(waves[i].$node[0].style.top);
-  //   //     top -= 20;
-  //   //     waves[i].$node[0].style.top = top + 'px';
-  //   //   }, 1000);
-  //   // }
-  //   var count = 0;
-  //   var recurse = function(count, upOrDown) {
-  //     if (count >= numWaves) {
-  //       return;
-  //     } else {
-  //       var top = parseInt(waves[count].$node[0].style.top);
-  //       if (upOrDown === 'up') {
-  //         top -= 20;
-  //       } else if (upOrDown === 'down') {
-  //         top += 20;
-  //       }
-        
-  //       waves[count].$node[0].style.top = top + 'px';
-  //       count ++;
-  //       setTimeout(function() { recurse(count); }, 20);
-  //     }
-  //   };
-
-  //   recurse( count, 'up');
-  //   var count2 = 0;
-  //   setTimeout( function() { recurse(count, 'down') }, 500);
-
-  //   console.dir(waves[34].$node[0]);
-  // };
-
+  $('.mouse').on('mouseenter', function() {
+    $('.canvas').animate({bottom: '-32%'}, 500);
+  });
+  $('.mouse').on('mouseleave', function() {
+    $('.canvas').animate({bottom: '-28%'}, 500);
+  });
+    //$('.canvas').animate({bottom: '-34%'}, 1000);
 
 });
 

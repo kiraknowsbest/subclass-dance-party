@@ -7,20 +7,26 @@
     <script src="src/dancer.js"></script>
     <script src="src/blinkyDancer.js"></script>
     <script src="src/clouds.js"></script>
+    <script src="src/storm.js"></script>
   </head>
   <body>
     <div class="topbar">
       <span class="title button">object dance party</span>
-      <a href="#" class="addWaveButton button" data-dancer-maker-function-name="MakeBlinkyDancer">Add Waves</a>
+      <a href="#" class="addWaveButton button" data-dancer-maker-function-name="MakeWave">Add Waves</a>
       <a href="#" class="sharkBait button" data-shark-attack="sharkBait">Shark Bait HooHaHa</a>
       <a href="#" class="cloudsButton button">Add Clouds</a>
+      <a href="#" class="boatsButton button">Swap boats!</a>
+      <a href="#" class="lineupButton button">Line Up!</a>
     </div>
-    <!-- boat -->
-    <div class="boat"></div>
-    <div class="mast"></div>
-    <div class="flag"></div>
-
     <div class="water"></div>
+    <div class="canvas">
+      <img src="images/sailor_hat.png" class="hat sail">
+      <img src="images/pirate_hat.png" class="hat pirate">
+      <img src="images/popeye.png" class="stick">
+      <img src="images/allen.png" class="allen mouse">
+      <img src="images/sailboat.png" class="sail boat mouse">
+      <img src="images/pirate_boat.png" class="pirate boat mouse">
+    </div>
     <img src="images/sharky.png" class="shark">
     <div class="low water"></div>
     <script src="src/init.js"></script>
